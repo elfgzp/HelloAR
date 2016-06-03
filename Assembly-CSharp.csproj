@@ -60,6 +60,7 @@
      <Compile Include="Assets\HelloAR\Scripts\BarCodeInfo.cs" />
      <Compile Include="Assets\HelloAR\Scripts\DanMuController.cs" />
      <Compile Include="Assets\HelloAR\Scripts\DanMuText.cs" />
+     <Compile Include="Assets\HelloAR\Scripts\DataCommunicate.cs" />
      <Compile Include="Assets\HelloAR\Scripts\EasyBarCodeScanner.cs" />
      <Compile Include="Assets\HelloAR\Scripts\EasyImageTargetBehaviour.cs" />
      <Compile Include="Assets\HelloAR\Scripts\LoadPrefab.cs" />
