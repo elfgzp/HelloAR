@@ -45,7 +45,7 @@ public class DanMuController : MonoBehaviour
 			GameObject obj = Texts.Dequeue();
 			if (obj)
 			{
-				obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2 - 80f));
+				obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2 - 120f));
 				obj.GetComponent<Text>().text = DanMuStrings[Random.Range(0, DanMuStrings.Length)];
 				obj.GetComponent<Text>().color = TextColors[Random.Range(0, TextColors.Length)];
 				obj.SetActive(true);

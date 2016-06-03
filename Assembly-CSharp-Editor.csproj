@@ -78,10 +78,10 @@
  <HintPath>/Volumes/El Capitan/Unity3D/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="EasyAR.Unity">
- <HintPath>/Users/Ruter/Desktop/HelloARv1.0/HelloAR/HelloAR/Assets/EasyAR/Scripts/EasyAR.Unity.dll</HintPath>
+ <HintPath>/Users/Ruter/Desktop/Workspace/UnityProject/HelloAR/Assets/EasyAR/Scripts/EasyAR.Unity.dll</HintPath>
  </Reference>
  <Reference Include="EasyAR.Unity.Editor">
- <HintPath>/Users/Ruter/Desktop/HelloARv1.0/HelloAR/HelloAR/Assets/EasyAR/Scripts/Editor/EasyAR.Unity.Editor.dll</HintPath>
+ <HintPath>/Users/Ruter/Desktop/Workspace/UnityProject/HelloAR/Assets/EasyAR/Scripts/Editor/EasyAR.Unity.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Volumes/El Capitan/Unity3D/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>

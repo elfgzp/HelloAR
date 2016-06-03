@@ -53,8 +53,8 @@ namespace EasyAR
 		{
 			while (isScanning) {
 				yield return null;
-				scanLine.GetComponent<RectTransform> ().localPosition = new Vector3(0, y - 2.5f, 0);
-				y -= 2.5f;
+				scanLine.GetComponent<RectTransform> ().localPosition = new Vector3(0, y - 10f, 0);
+				y -= 10f;
 				if (Mathf.Abs (y) > Screen.height / 2 + 10) {
 					y = Screen.height / 2 + 5;
 				}

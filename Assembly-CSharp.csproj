@@ -79,7 +79,7 @@
  <HintPath>/Volumes/El Capitan/Unity3D/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="EasyAR.Unity">
- <HintPath>/Users/Ruter/Desktop/HelloARv1.0/HelloAR/HelloAR/Assets/EasyAR/Scripts/EasyAR.Unity.dll</HintPath>
+ <HintPath>/Users/Ruter/Desktop/Workspace/UnityProject/HelloAR/Assets/EasyAR/Scripts/EasyAR.Unity.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
