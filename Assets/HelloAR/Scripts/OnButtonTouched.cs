@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using EasyAR;
 
 public class OnButtonTouched : MonoBehaviour {
 
@@ -10,11 +11,14 @@ public class OnButtonTouched : MonoBehaviour {
 	private GameObject shotField;
 	private GameObject textField;
 	private GameObject shotButton;
+	private GameObject cameraDevice;
 //	private GameObject commButton;
 	private AsyncOperation async = null;
 	private float commX = Screen.width + 50f;
 
 	public bool isShow = false;
+
+	public string url = "";
 
 	void Awake () 
 	{	
@@ -23,7 +27,7 @@ public class OnButtonTouched : MonoBehaviour {
 
 	void Update ()
 	{
-		
+		url = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.commentApi;
 	}
 
 	void Start() {
@@ -32,6 +36,7 @@ public class OnButtonTouched : MonoBehaviour {
 		shotField = GameObject.FindGameObjectWithTag ("ShotField");
 		textField = GameObject.FindGameObjectWithTag ("TextField");
 		shotButton = GameObject.FindGameObjectWithTag ("ShotButton");
+		cameraDevice = GameObject.Find("CameraDevice");
 //		commButton = GameObject.FindGameObjectWithTag ("CommButton");
 		// 设置评论视图
 		if (commView != null) {
@@ -47,6 +52,9 @@ public class OnButtonTouched : MonoBehaviour {
 //			shotButton.GetComponent<RectTransform> ().localPosition = new Vector3 (Screen.width / 6 * 5, 8f, 0f);
 //			commView.SetActive (false);
 		}
+			
+
+
 	}
 
 	void OnGUI()
@@ -86,6 +94,8 @@ public class OnButtonTouched : MonoBehaviour {
 			StartCoroutine ("ShowCommView");
 			isShow = true;
 
+			commView.GetComponent<DanMuController> ().end = false;
+			commView.GetComponent<DanMuController> ().StartCoroutine (commView.GetComponent<DanMuController> ().getComments());
 			commView.GetComponent<DanMuController> ().StartShot ();
 		}
 	}
@@ -95,6 +105,9 @@ public class OnButtonTouched : MonoBehaviour {
 		Debug.Log ("GameObject " + button.name);
 		string danmu = textField.GetComponent<InputField> ().text;
 		Debug.Log (danmu);
+
+		string comment = WWW.EscapeURL (danmu);
+		StartCoroutine (SubmitComment (comment));
 
 		textField.GetComponent<InputField> ().text = "";
 
@@ -170,4 +183,24 @@ public class OnButtonTouched : MonoBehaviour {
 
 		StopCoroutine ("CloseCommView");
 	}
+
+	IEnumerator SubmitComment(string comment)
+	{
+
+		if (url != "") {
+			WWW wwwCommentSubmit = new WWW (url + comment);
+			yield return wwwCommentSubmit;
+
+			if (wwwCommentSubmit.error != null)
+			{
+				Debug.Log(wwwCommentSubmit.error);
+				yield return null;
+			}
+
+		} else {
+			yield return null;
+		}
+			
+	}
+
 }
