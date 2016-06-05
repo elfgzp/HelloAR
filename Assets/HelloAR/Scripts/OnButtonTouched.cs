@@ -10,7 +10,7 @@ public class OnButtonTouched : MonoBehaviour {
 	private GameObject shotField;
 	private GameObject textField;
 	private GameObject shotButton;
-	private GameObject commButton;
+//	private GameObject commButton;
 	private AsyncOperation async = null;
 	private float commX = Screen.width + 50f;
 
@@ -32,12 +32,12 @@ public class OnButtonTouched : MonoBehaviour {
 		shotField = GameObject.FindGameObjectWithTag ("ShotField");
 		textField = GameObject.FindGameObjectWithTag ("TextField");
 		shotButton = GameObject.FindGameObjectWithTag ("ShotButton");
-		commButton = GameObject.FindGameObjectWithTag ("CommButton");
+//		commButton = GameObject.FindGameObjectWithTag ("CommButton");
 		// 设置评论视图
 		if (commView != null) {
 			commView.GetComponent<RectTransform> ().localPosition = new Vector3 (Screen.width + 10f, 0f, 0f);
 			Debug.Log ("I find it!");
-			shotField.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width, 80f);
+			shotField.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width, 72f);
 
 			textField.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width / 3 * 2, 64f);
 			textField.GetComponent<RectTransform> ().localPosition = new Vector3 (- Screen.width / 6 + 8, 40f, 0f);
@@ -99,6 +99,25 @@ public class OnButtonTouched : MonoBehaviour {
 		textField.GetComponent<InputField> ().text = "";
 
 		commView.GetComponent<DanMuController> ().ShotDanMu (danmu);
+	}
+
+	public void LikeButtonClick(GameObject button)
+	{
+		Debug.Log ("GameObject " + button.name);
+	}
+
+	public void ScalePlus()
+	{
+		float z = Camera.main.transform.position.z;
+		z += 0.25f;
+		Camera.main.transform.Translate (0, 0, z);
+	}
+
+	public void ScaleMinus()
+	{
+		float z = Camera.main.transform.position.z;
+		z -= 0.25f;
+		Camera.main.transform.Translate (0, 0, z);
 	}
 
 	//异步加载

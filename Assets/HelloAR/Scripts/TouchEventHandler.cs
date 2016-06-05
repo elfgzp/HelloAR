@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TouchEventHandler : MonoBehaviour {
 
-	private Vector2 oldPosition;
+//	private Vector2 oldPosition;
 //	private float yRotation = 0.0f;
 	private bool isTouched = false;
 
@@ -39,7 +39,7 @@ public class TouchEventHandler : MonoBehaviour {
 		isTouched = true;
 		if (Input.touchCount == 1) {
 			if (Input.touches [0].phase == TouchPhase.Began) {
-				oldPosition = Input.touches [0].position;
+//				oldPosition = Input.touches [0].position;
 			} else if (Input.touches [0].phase == TouchPhase.Moved) {
 				this.transform.Rotate (new Vector3 (Input.touches [0].deltaPosition.y * 0.1f, -Input.touches [0].deltaPosition.x * 0.5f, 0), Space.World);
 //				this.transform.Rotate (new Vector3 (0, -Input.touches [0].deltaPosition.x * 0.5f, 0), Space.World);
@@ -74,7 +74,7 @@ public class TouchEventHandler : MonoBehaviour {
 					else
 						mov += mov2.y;
 
-					Camera.main.transform.Translate (0, 0, mov * Time.deltaTime);
+					Camera.main.transform.Translate (0, 0, mov * Time.deltaTime * 0.75f);
 				}
 			}
 		}

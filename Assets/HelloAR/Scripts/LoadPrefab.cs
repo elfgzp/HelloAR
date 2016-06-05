@@ -34,10 +34,12 @@ public class LoadPrefab : MonoBehaviour
             if (lastUrl !="")
             {
                 DeleteOldPrefab();
-            }
+			}
+
+			GameObject loadView = GameObject.FindGameObjectWithTag ("LoadView");
+			loadView.transform.localScale = Vector3.one;
 
 			StartCoroutine (DownLoadPrefab ());
-
 			
             lastUrl = url;
         }
@@ -54,21 +56,21 @@ public class LoadPrefab : MonoBehaviour
 
 	void InstaObj()
 	{
-            ShowObjects(transform);
-        // 实例化模型对象
-            GameObject gameObject = (GameObject)Instantiate(bundle.mainAsset, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
-            // 添加触摸事件的脚本
-            gameObject.AddComponent<TouchEventHandler>();
-            // 添加tag
-            gameObject.tag = prefabTag;
-            // 记录transform
-            Vector3 originScale = gameObject.transform.localScale;
-            // 设置该对象到子层级
-            gameObject.transform.parent = transform;
-            // 设置现在的缩放比例
-            gameObject.transform.localScale = originScale;
-
-
+        ShowObjects(transform);
+    	// 实例化模型对象
+        GameObject gameObject = (GameObject)Instantiate(bundle.mainAsset, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+        // 添加触摸事件的脚本
+        gameObject.AddComponent<TouchEventHandler>();
+        // 添加tag
+        gameObject.tag = prefabTag;
+        // 记录transform
+        Vector3 originScale = gameObject.transform.localScale;
+        // 设置该对象到子层级
+        gameObject.transform.parent = transform;
+        // 设置现在的缩放比例
+        gameObject.transform.localScale = originScale;
+		// 删除Loading图片
+		GameObject.FindGameObjectWithTag ("LoadView").transform.localScale = Vector3.zero;
     }
 
     void DeleteOldPrefab()
