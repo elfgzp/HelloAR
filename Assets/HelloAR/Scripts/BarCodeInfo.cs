@@ -11,14 +11,14 @@ using System.Collections;
 		public string likeApi { get; set; }
 		public string getLikesApi { get; set; }
 
-	public BarCodeInfo() {
-        	targetImageUrl = "";
-        	prefabUrl = "";
-			commentApi = "";
-			getCommentsApi = "";
-			likeApi = "";
-			getLikesApi = "";
-        }
+		public BarCodeInfo() {
+	        	targetImageUrl = "";
+	        	prefabUrl = "";
+				commentApi = "";
+				getCommentsApi = "";
+				likeApi = "";
+				getLikesApi = "";
+	    }
     }
 
 

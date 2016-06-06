@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using EasyAR;
+using JsonFx.Json;
 
 /// <summary>
 /// 实现看视频时的弹幕效果
@@ -16,46 +18,76 @@ public class DanMuController : MonoBehaviour
 	public Queue<GameObject> Texts = new Queue<GameObject>();
 //	private bool isDanmuOn = false;
 	private IEnumerator coroutine;
+	private string url = "";
+	private GameObject cameraDevice;
+	private bool isOutOfStock = false;
+
+	string[] commentList;
 	// GameObject.FindGameObjectWithTag ("CommView").GetComponent<OnButtonTouched> ().isShow
 
 	// Use this for initialization
 	void Start()
 	{
-		
+		cameraDevice = GameObject.Find("CameraDevice");
 	}
 
-	public void StartShot()
+	void Update()
 	{
-		for (int i = 0; i < num; i++)
-		{
-			GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
-			obj.SetActive(false);
-			obj.transform.SetParent(transform);
-			obj.transform.localScale = Vector3.one;
-			Texts.Enqueue(obj);
-		}
-		coroutine = DanmuAnimation();
-		StartCoroutine(coroutine);
+		url = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.getCommentsApi;
 	}
 
+//	public void StartShot()
+//	{
+//		for (int i = 0; i < num; i++)
+//		{
+//			GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
+//			obj.SetActive(false);
+//			obj.transform.SetParent(transform);
+//			obj.transform.localScale = Vector3.one;
+//			Texts.Enqueue(obj);
+//		}
+//		coroutine = DanmuAnimation();
+//		StartCoroutine(coroutine);
+//	}
+	public IEnumerator StartShot()
+	{
+		int page = 1;
+		while (true) {
+			if (commentList.Length < 1) {
+				StartCoroutine (GetComments (page));
+				if (isOutOfStock) {
+					StopCoroutine ("StartShot");
+				}
+			}
+			StartCoroutine (StowDanMu());
+			StartCoroutine (DanmuAnimation ());
+			page += 1;
+			yield return new WaitForSeconds (10f);
+			StopCoroutine ("GetComments");
+			StopCoroutine ("StowDanMu");
+			StopCoroutine ("DanMuAnimation");
+		}
+	}
+	// 弹幕发射移动
 	private IEnumerator DanmuAnimation()       
 	{
 		while (true)
 		{
 			GameObject obj = Texts.Dequeue();
-			if (obj)
-			{
-				obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2 - 120f));
-				obj.GetComponent<Text>().text = DanMuStrings[Random.Range(0, DanMuStrings.Length)];
-				obj.GetComponent<Text>().color = TextColors[Random.Range(0, TextColors.Length)];
-				obj.SetActive(true);
+			if (obj) {
+//				obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2 - 120f));
+//				obj.GetComponent<Text>().text = DanMuStrings[Random.Range(0, DanMuStrings.Length)];
+//				obj.GetComponent<Text>().color = TextColors[Random.Range(0, TextColors.Length)];
+				obj.SetActive (true);
 
-				obj.GetComponent<DanMuText>().Reset(Texts);
+				obj.GetComponent<DanMuText> ().Reset ();
+			} else {
+				yield break;
 			}
 			yield return new WaitForSeconds(0.2f);                
 		}
 	}
-
+	// 发射弹幕
 	public void ShotDanMu(string danmu)
 	{
 		GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
@@ -63,16 +95,73 @@ public class DanMuController : MonoBehaviour
 		obj.transform.SetParent(transform);
 		obj.transform.localScale = Vector3.one;
 
-		obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2));
+		obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2 - 120f));
 		obj.GetComponent<Text>().text = danmu;
 		obj.GetComponent<Text>().color = TextColors[Random.Range(0, TextColors.Length)];
 		obj.GetComponent<Text> ().fontSize = 25;
 		obj.GetComponent<Text> ().fontStyle = FontStyle.BoldAndItalic;
 		obj.SetActive(true);
 
-		obj.GetComponent<DanMuText>().Reset(Texts);
+		obj.GetComponent<DanMuText>().Reset();
 	}
+	// 获取弹幕
+	private IEnumerator GetComments(int p)
+	{
+		Debug.Log ("Get Comments...");
+		string page = WWW.EscapeURL (p.ToString());
+		if (url != "") {
+			WWW wwwCommJson = new WWW (url + page);
+			yield return wwwCommJson;
 
+			if (wwwCommJson.error != null)
+			{
+				Debug.Log(wwwCommJson.error);
+				yield break;
+			}
+
+			string json = wwwCommJson.text;
+			if (json != "error") {
+				commentList = JsonReader.Deserialize<string[]> (json);
+			} else {
+				isOutOfStock = true;
+			}
+//			StopCoroutine ("GetComments");
+		} else {
+			yield break;
+		}
+	}
+	// 装载弹幕
+	private IEnumerator StowDanMu()
+	{
+		Debug.Log ("Stow Dan Mu...");
+		while (commentList.Length < 0) {
+			yield return null;
+		}
+		foreach (string comment in commentList) {
+			GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
+			obj.SetActive(false);
+			obj.transform.SetParent(transform);
+			obj.transform.localScale = Vector3.one;
+
+			obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2 - 120f));
+			obj.GetComponent<Text>().text = comment;
+			obj.GetComponent<Text>().color = TextColors[Random.Range(0, TextColors.Length)];
+
+			Texts.Enqueue(obj);
+		}
+		yield return null;
+
+		// 清空弹幕
+		commentList = new string[]{};
+//		for (int i = 0; i < commentList.Length; i++)
+//		{
+//			GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
+//			obj.SetActive(false);
+//			obj.transform.SetParent(transform);
+//			obj.transform.localScale = Vector3.one;
+//			Texts.Enqueue(obj);
+//		}
+	}
 	/// <summary>
 	/// 弹幕的开关
 	/// </summary>
@@ -117,30 +206,6 @@ public class DanMuController : MonoBehaviour
 		"ZZZZZZZZZZZZZZZ",
 		"XXXXXXXXXXXXXXXXXXX"
 	};
-//	public string[] DanMuStrings =
-//	{
-//		"这个剧情也太雷人了吧！",
-//		"还是好莱坞的电影经典啊，这个太次了",
-//		"是电锯惊魂的主角，尼玛",
-//		"这个游戏还是很良心的么",
-//		"卧槽还要花钱，这一关也太难了",
-//		"这个游戏好棒偶",
-//		"全是傻逼",
-//		"求约：13122785566",
-//		"最近好寂寞啊，还是这个游戏好啊",
-//		"难道玩游戏还能撸",
-//		"办证：010 - 888888",
-//		"为什么女主角没有死？",
-//		"好帅呦，你这个娘们儿",
-//		"欠揍啊，东北人不知道啊",
-//		"我去都是什么人啊，请文明用语",
-//		"这个还是不错的",
-//		"要是胸再大点就更好了",
-//		"这个游戏必须顶啊",
-//		"怎么没有日本动作爱情片中的角色呢？",
-//		"好吧，这也是醉了！",
-//		"他只想做一个安静的美男子！"
-//	};
 
 	public Color[] TextColors;
 }

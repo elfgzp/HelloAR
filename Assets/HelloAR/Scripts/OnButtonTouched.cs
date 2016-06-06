@@ -87,16 +87,18 @@ public class OnButtonTouched : MonoBehaviour {
 
 		commView.SetActive (true);
 
+		IEnumerator coroutine = commView.GetComponent<DanMuController> ().StartShot ();
 		if (isShow) {
 			StartCoroutine ("CloseCommView");
 			isShow = false;
+			StopCoroutine(coroutine);
 		} else {
 			StartCoroutine ("ShowCommView");
 			isShow = true;
 
-			commView.GetComponent<DanMuController> ().end = false;
-			commView.GetComponent<DanMuController> ().StartCoroutine (commView.GetComponent<DanMuController> ().getComments());
-			commView.GetComponent<DanMuController> ().StartShot ();
+//			commView.GetComponent<DanMuController> ().end = false;
+//			commView.GetComponent<DanMuController> ().StartCoroutine (commView.GetComponent<DanMuController> ().GetComments());
+			StartCoroutine(coroutine);
 		}
 	}
 

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 public class DanMuText : MonoBehaviour
 {
-	public void Reset(Queue<GameObject> Texts)
+	public void Reset()
 	{
-		StartCoroutine("ShotDanMu", Texts);
+		StartCoroutine("ShotDanMu");
 	}
 
-	IEnumerator ShotDanMu(Queue<GameObject> Texts)
+	IEnumerator ShotDanMu()
 	{
 		float speed = 5f;
 		while(transform.localPosition.x > -Screen.width / 2 - 50f)
@@ -20,7 +20,6 @@ public class DanMuText : MonoBehaviour
 		}
 		Destroy (gameObject);
 //		gameObject.SetActive(false);
-//		Texts.Enqueue(gameObject);
 		StopCoroutine ("ShotDanMu");
 	}
 }
