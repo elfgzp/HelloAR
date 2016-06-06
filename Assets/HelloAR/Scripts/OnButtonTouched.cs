@@ -19,6 +19,7 @@ public class OnButtonTouched : MonoBehaviour {
 	public bool isShow = false;
 
 	public string url = "";
+	private string likeUrl = "";
 
 	void Awake () 
 	{	
@@ -28,6 +29,7 @@ public class OnButtonTouched : MonoBehaviour {
 	void Update ()
 	{
 		url = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.commentApi;
+		likeUrl = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.likeApi;
 	}
 
 	void Start() {
@@ -118,7 +120,9 @@ public class OnButtonTouched : MonoBehaviour {
 
 	public void LikeButtonClick(GameObject button)
 	{
+		// 暂未加点赞次数的限制
 		Debug.Log ("GameObject " + button.name);
+		StartCoroutine ("LikePlusOne");
 	}
 
 	public void ScalePlus()
@@ -200,9 +204,25 @@ public class OnButtonTouched : MonoBehaviour {
 			}
 
 		} else {
-			yield return null;
+			yield break;
 		}
-			
+	}
+
+	IEnumerator LikePlusOne()
+	{
+		if (likeUrl != "") {
+			WWW wwwCommentSubmit = new WWW (likeUrl);
+			yield return wwwCommentSubmit;
+
+			if (wwwCommentSubmit.error != null)
+			{
+				Debug.Log(wwwCommentSubmit.error);
+				yield return null;
+			}
+
+		} else {
+			yield break;
+		}
 	}
 
 }
