@@ -22,7 +22,7 @@ public class DanMuController : MonoBehaviour
 	private GameObject cameraDevice;
 	private bool isOutOfStock = false;
 
-	string[] commentList;
+	string[] commentList = {};
 	// GameObject.FindGameObjectWithTag ("CommView").GetComponent<OnButtonTouched> ().isShow
 
 	// Use this for initialization
@@ -73,18 +73,22 @@ public class DanMuController : MonoBehaviour
 	{
 		while (true)
 		{
-			GameObject obj = Texts.Dequeue();
-			if (obj) {
-//				obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2 - 120f));
-//				obj.GetComponent<Text>().text = DanMuStrings[Random.Range(0, DanMuStrings.Length)];
-//				obj.GetComponent<Text>().color = TextColors[Random.Range(0, TextColors.Length)];
-				obj.SetActive (true);
+			if (Texts.Count > 0) {
+				GameObject obj = Texts.Dequeue ();
+				if (obj) {
+					//				obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2 - 120f));
+					//				obj.GetComponent<Text>().text = DanMuStrings[Random.Range(0, DanMuStrings.Length)];
+					//				obj.GetComponent<Text>().color = TextColors[Random.Range(0, TextColors.Length)];
+					obj.SetActive (true);
 
-				obj.GetComponent<DanMuText> ().Reset ();
+					obj.GetComponent<DanMuText> ().Reset ();
+				} else {
+					yield break;
+				}
+				yield return new WaitForSeconds (0.2f);
 			} else {
 				yield break;
 			}
-			yield return new WaitForSeconds(0.2f);                
 		}
 	}
 	// 发射弹幕
