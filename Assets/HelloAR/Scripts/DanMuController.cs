@@ -22,6 +22,7 @@ public class DanMuController : MonoBehaviour
 	private GameObject cameraDevice;
 	private bool isOutOfStock = false;
 
+    int page = 1;
 	string[] commentList = {};
 	// GameObject.FindGameObjectWithTag ("CommView").GetComponent<OnButtonTouched> ().isShow
 
@@ -51,16 +52,13 @@ public class DanMuController : MonoBehaviour
 //	}
 	public IEnumerator StartShot()
 	{
-		int page = 1;
-		while (true) {
+		while (gameObject.activeSelf) {
 			if (commentList.Length < 1) {
-				StartCoroutine (GetComments (page));
+				StartCoroutine (GetComments ());
 				if (isOutOfStock) {
 					StopCoroutine ("StartShot");
 				}
 			}
-			StartCoroutine (StowDanMu());
-			StartCoroutine (DanmuAnimation ());
 			page += 1;
 			yield return new WaitForSeconds (10f);
 			StopCoroutine ("GetComments");
@@ -68,12 +66,11 @@ public class DanMuController : MonoBehaviour
 			StopCoroutine ("DanMuAnimation");
 		}
 	}
-	// 弹幕发射移动
-	private IEnumerator DanmuAnimation()       
+    // 弹幕发射移动
+    public IEnumerator DanmuAnimation()       
 	{
-		while (true)
+		while (Texts.Count > 0)
 		{
-			if (Texts.Count > 0) {
 				GameObject obj = Texts.Dequeue ();
 				if (obj) {
 					//				obj.transform.localPosition = new Vector3(Screen.width + 10f, Random.Range(-Screen.height / 2 + 50f, Screen.height / 2 - 120f));
@@ -85,10 +82,7 @@ public class DanMuController : MonoBehaviour
 				} else {
 					yield break;
 				}
-				yield return new WaitForSeconds (0.2f);
-			} else {
-				yield break;
-			}
+				yield return new WaitForSeconds (1f);
 		}
 	}
 	// 发射弹幕
@@ -109,10 +103,9 @@ public class DanMuController : MonoBehaviour
 		obj.GetComponent<DanMuText>().Reset();
 	}
 	// 获取弹幕
-	private IEnumerator GetComments(int p)
+    public IEnumerator GetComments()
 	{
 		Debug.Log ("Get Comments...");
-		string page = WWW.EscapeURL (p.ToString());
 		if (url != "") {
 			WWW wwwCommJson = new WWW (url + page);
 			yield return wwwCommJson;
@@ -126,21 +119,22 @@ public class DanMuController : MonoBehaviour
 			string json = wwwCommJson.text;
 			if (json != "error") {
 				commentList = JsonReader.Deserialize<string[]> (json);
+                StartCoroutine(StowDanMu());
+                StartCoroutine(DanmuAnimation());
+                print(commentList);
 			} else {
 				isOutOfStock = true;
+                page = 1;
 			}
 //			StopCoroutine ("GetComments");
 		} else {
 			yield break;
 		}
 	}
-	// 装载弹幕
-	private IEnumerator StowDanMu()
+    // 装载弹幕
+    public IEnumerator StowDanMu()
 	{
 		Debug.Log ("Stow Dan Mu...");
-		while (commentList.Length < 0) {
-			yield return null;
-		}
 		foreach (string comment in commentList) {
 			GameObject obj = (GameObject)Instantiate(textPrefab, transform.position, Quaternion.identity);
 			obj.SetActive(false);
