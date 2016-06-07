@@ -22,9 +22,9 @@ public class OnButtonTouched : MonoBehaviour {
 	private string likeUrl = "";
 
 	void Awake () 
-	{	
-		
-	}
+	{
+        cameraDevice = GameObject.Find("CameraDevice");
+    }
 
 	void Update ()
 	{
@@ -38,7 +38,6 @@ public class OnButtonTouched : MonoBehaviour {
 		shotField = GameObject.FindGameObjectWithTag ("ShotField");
 		textField = GameObject.FindGameObjectWithTag ("TextField");
 		shotButton = GameObject.FindGameObjectWithTag ("ShotButton");
-		cameraDevice = GameObject.Find("CameraDevice");
 //		commButton = GameObject.FindGameObjectWithTag ("CommButton");
 		// 设置评论视图
 		if (commView != null) {

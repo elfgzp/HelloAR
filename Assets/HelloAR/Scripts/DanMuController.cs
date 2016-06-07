@@ -24,12 +24,18 @@ public class DanMuController : MonoBehaviour
 
     int page = 1;
 	string[] commentList = {};
-	// GameObject.FindGameObjectWithTag ("CommView").GetComponent<OnButtonTouched> ().isShow
+    // GameObject.FindGameObjectWithTag ("CommView").GetComponent<OnButtonTouched> ().isShow
 
-	// Use this for initialization
-	void Start()
+    // Use this for initialization
+    void Awake()
+    {
+        cameraDevice = GameObject.Find("CameraDevice");
+    }
+
+
+    void Start()
 	{
-		cameraDevice = GameObject.Find("CameraDevice");
+
 	}
 
 	void Update()
