@@ -64,7 +64,7 @@ namespace EasyAR
 		// 解析二维码链接里的json
         IEnumerator GetJson(string url)
 		{
-            WWW www = new WWW(url);
+            WWW www = new WWW(url + "&&is_ar_scanner=1");
             yield return www;
 
             json = www.text;
