@@ -12,11 +12,13 @@ public class OnButtonTouched : MonoBehaviour {
 	private GameObject textField;
 	private GameObject shotButton;
 	private GameObject cameraDevice;
+	private GameObject likeBtn;
 //	private GameObject commButton;
 	private AsyncOperation async = null;
 	private float commX = Screen.width + 50f;
 
 	public bool isShow = false;
+	public bool isLiked = false;
 
 	public string url = "";
 	private string likeUrl = "";
@@ -122,9 +124,17 @@ public class OnButtonTouched : MonoBehaviour {
 
 	public void LikeButtonClick(GameObject button)
 	{
-		// 暂未加点赞次数的限制
+		likeBtn = GameObject.FindGameObjectWithTag ("Like");
+		isLiked = !isLiked;
+		// 如果为真则+1并更改材质
 		Debug.Log ("GameObject " + button.name);
-		StartCoroutine ("LikePlusOne");
+		if (isLiked) {
+//			StartCoroutine ("LoadImg");
+			likeBtn.GetComponent<UnityEngine.UI.Image> ().material = Resources.Load ("Materials/Like_Full") as Material;
+			StartCoroutine ("LikePlusOne");
+		} else {
+			likeBtn.GetComponent<UnityEngine.UI.Image> ().material = Resources.Load ("Materials/Like") as Material;
+		}
 	}
 
 	public void ScalePlus()
