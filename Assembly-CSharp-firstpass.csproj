@@ -71,6 +71,7 @@
      <Compile Include="Assets\Plugins\JsonFx\JsonFx.Json\TypeCoercionUtility.cs" />
      <Compile Include="Assets\Plugins\JsonFx\JsonFx.Json\XmlDataReader.cs" />
      <Compile Include="Assets\Plugins\JsonFx\JsonFx.Json\XmlDataWriter.cs" />
+     <Compile Include="Assets\Plugins\WebViewObject.cs" />
      <None Include="Assets\Plugins\JsonFx\JsonFx.Json\Readme.txt" />
      <None Include="Assets\Plugins\JsonFx\JsonFx.Json\License.txt" />
      <None Include="Assets\Plugins\JsonFx\TODO.txt" />

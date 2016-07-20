@@ -13,6 +13,7 @@ public class OnButtonTouched : MonoBehaviour {
 	private GameObject shotButton;
 	private GameObject cameraDevice;
 	private GameObject likeBtn;
+	private GameObject quitBtn;
 //	private GameObject commButton;
 	private AsyncOperation async = null;
 	private float commX = Screen.width + 50f;
@@ -40,6 +41,7 @@ public class OnButtonTouched : MonoBehaviour {
 		shotField = GameObject.FindGameObjectWithTag ("ShotField");
 		textField = GameObject.FindGameObjectWithTag ("TextField");
 		shotButton = GameObject.FindGameObjectWithTag ("ShotButton");
+
 //		commButton = GameObject.FindGameObjectWithTag ("CommButton");
 		// 设置评论视图
 		if (commView != null) {
@@ -55,9 +57,6 @@ public class OnButtonTouched : MonoBehaviour {
 //			shotButton.GetComponent<RectTransform> ().localPosition = new Vector3 (Screen.width / 6 * 5, 8f, 0f);
 //			commView.SetActive (false);
 		}
-			
-
-
 	}
 
 	void OnGUI()

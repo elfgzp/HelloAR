@@ -58,6 +58,7 @@
      <Compile Include="Assets\HelloAR\Scripts\AssetBundleManager.cs" />
      <Compile Include="Assets\HelloAR\Scripts\BallController.cs" />
      <Compile Include="Assets\HelloAR\Scripts\BarCodeInfo.cs" />
+     <Compile Include="Assets\HelloAR\Scripts\BuyHandler.cs" />
      <Compile Include="Assets\HelloAR\Scripts\DanMuController.cs" />
      <Compile Include="Assets\HelloAR\Scripts\DanMuText.cs" />
      <Compile Include="Assets\HelloAR\Scripts\DataCommunicate.cs" />
