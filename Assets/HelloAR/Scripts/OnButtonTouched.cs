@@ -22,6 +22,7 @@ public class OnButtonTouched : MonoBehaviour {
 	public bool isLiked = false;
 
 	public string url = "";
+	public string scanId = "";
 	private string likeUrl = "";
 
 	void Awake () 
@@ -32,6 +33,7 @@ public class OnButtonTouched : MonoBehaviour {
 	void Update ()
 	{
 		url = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.commentApi;
+		scanId = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.scanId;
 		likeUrl = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.likeApi;
 	}
 
@@ -133,6 +135,7 @@ public class OnButtonTouched : MonoBehaviour {
 			StartCoroutine ("LikePlusOne");
 		} else {
 			likeBtn.GetComponent<UnityEngine.UI.Image> ().material = Resources.Load ("Materials/Like") as Material;
+			StartCoroutine ("LikeSubtractOne");
 		}
 	}
 
@@ -205,7 +208,7 @@ public class OnButtonTouched : MonoBehaviour {
 	{
 
 		if (url != "") {
-			WWW wwwCommentSubmit = new WWW (url + comment);
+			WWW wwwCommentSubmit = new WWW (url + comment + "&&scan_id=" + scanId);
 			yield return wwwCommentSubmit;
 
 			if (wwwCommentSubmit.error != null)
@@ -222,7 +225,24 @@ public class OnButtonTouched : MonoBehaviour {
 	IEnumerator LikePlusOne()
 	{
 		if (likeUrl != "") {
-			WWW wwwCommentSubmit = new WWW (likeUrl);
+			WWW wwwCommentSubmit = new WWW (likeUrl + "&&like=1" + "&&scan_id=" + scanId);
+			yield return wwwCommentSubmit;
+
+			if (wwwCommentSubmit.error != null)
+			{
+				Debug.Log(wwwCommentSubmit.error);
+				yield return null;
+			}
+
+		} else {
+			yield break;
+		}
+	}
+
+	IEnumerator LikeSubtractOne()
+	{
+		if (likeUrl != "") {
+			WWW wwwCommentSubmit = new WWW (likeUrl + "&&like=0" + "&&scan_id=" + scanId);
 			yield return wwwCommentSubmit;
 
 			if (wwwCommentSubmit.error != null)
