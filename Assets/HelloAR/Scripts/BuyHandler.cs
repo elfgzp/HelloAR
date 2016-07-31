@@ -1,21 +1,33 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using EasyAR;
 
 public class BuyHandler : MonoBehaviour {
 
 	private GameObject webViewMask;
 	private GameObject goBackBtn;
+	private GameObject cameraDevice;
+	private GameObject buyBtn;
 
 	private string goodsUrl = "";
 
 	WebViewObject webViewObject;
 
+	void Awake () 
+	{
+		cameraDevice = GameObject.Find("CameraDevice");
+	}
+
 	// Use this for initialization
 	void Start () {
 
+		buyBtn = GameObject.FindGameObjectWithTag ("Buy");
 		goBackBtn = GameObject.FindGameObjectWithTag ("GoBack");
 		webViewMask = GameObject.FindGameObjectWithTag ("WebView");
+
+//		buyBtn.SetActive (false);
 
 		goBackBtn.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width, 32f);
 
@@ -26,7 +38,13 @@ public class BuyHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		goodsUrl = "https://ruter.github.io";
+//		goodsUrl = "https://www.bing.com";
+		goodsUrl = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.productLink;
+		if (goodsUrl != "") {
+			buyBtn.SetActive (true);
+		} else {
+			buyBtn.SetActive (false);
+		}
 	}
 
 	public void Buy (GameObject button)

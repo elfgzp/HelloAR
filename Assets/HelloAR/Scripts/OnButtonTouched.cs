@@ -71,19 +71,19 @@ public class OnButtonTouched : MonoBehaviour {
 	}
 
 	// 按钮的点击事件
-	public void ScanButtonClick (GameObject button)
-	{
-		Debug.Log("GameObject " + button.name);
-		//开始加载场景
-		StartCoroutine("ScanScene");
-	}
+//	public void ScanButtonClick (GameObject button)
+//	{
+//		Debug.Log("GameObject " + button.name);
+//		//开始加载场景
+//		StartCoroutine("ScanScene");
+//	}
 
-	public void QuitButtonClick (GameObject button)
-	{
-		Debug.Log("GameObject " + button.name);
-		//开始加载场景
-		StartCoroutine("MainScene");
-	}
+//	public void QuitButtonClick (GameObject button)
+//	{
+//		Debug.Log("GameObject " + button.name);
+//		//开始加载场景
+//		StartCoroutine("MainScene");
+//	}
 
 	public void CommBunttonClick (GameObject button)
 	{
