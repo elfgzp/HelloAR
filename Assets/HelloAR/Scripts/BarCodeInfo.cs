@@ -8,20 +8,22 @@ public class BarCodeInfo
     public string targetImageUrl { get; set; }
     public string prefabUrl { get; set; }
 	public string productLink { get; set;}
+	public string productLinkClickedApi { get; set; }
 	public string commentApi { get; set; }
 	public string getCommentsApi { get; set; }
 	public string likeApi { get; set; }
 	public string getLikesApi { get; set; }
 
 	public BarCodeInfo() {
-			scanId = "";
-        	targetImageUrl = "";
-        	prefabUrl = "";
-			productLink = "";
-			commentApi = "";
-			getCommentsApi = "";
-			likeApi = "";
-			getLikesApi = "";
+		scanId = "";
+    	targetImageUrl = "";
+    	prefabUrl = "";
+		productLink = "";
+		productLinkClickedApi = "";
+		commentApi = "";
+		getCommentsApi = "";
+		likeApi = "";
+		getLikesApi = "";
     }
 }
 
