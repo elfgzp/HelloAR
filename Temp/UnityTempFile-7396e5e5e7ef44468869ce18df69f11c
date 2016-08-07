@@ -2,15 +2,15 @@
 -target:library
 -nowarn:0169
 -out:'Temp/Assembly-CSharp-firstpass.dll'
--r:'/Volumes/El Capitan/Unity3D/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll'
--r:'/Volumes/El Capitan/Unity3D/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll'
--r:'/Volumes/El Capitan/Unity3D/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll'
 -r:'Assets/EasyAR/Scripts/EasyAR.Unity.dll'
--r:'/Volumes/El Capitan/Unity3D/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll'
--r:'/Volumes/El Capitan/Unity3D/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll'
--r:'/Volumes/El Capitan/Unity3D/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll'
+-r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll'
+-r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll'
 -define:UNITY_5_3_OR_NEWER
--define:UNITY_5_3_4
+-define:UNITY_5_3_5
 -define:UNITY_5_3
 -define:UNITY_5
 -define:ENABLE_NEW_BUGREPORTER
@@ -89,6 +89,7 @@
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_64
 -define:UNITY_EDITOR_OSX
+-define:UNITY_TEAM_LICENSE
 -define:ENABLE_IOS_ON_DEMAND_RESOURCES
 -define:ENABLE_IOS_APP_SLICING
 'Assets/Plugins/JsonFx/JsonFx.Json/About.cs'
@@ -118,5 +119,5 @@
 'Assets/Plugins/JsonFx/JsonFx.Json/XmlDataReader.cs'
 'Assets/Plugins/JsonFx/JsonFx.Json/XmlDataWriter.cs'
 'Assets/Plugins/WebViewObject.cs'
--r:'/Volumes/El Capitan/Unity3D/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
--r:'/Volumes/El Capitan/Unity3D/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/System.Xml.Linq.dll'

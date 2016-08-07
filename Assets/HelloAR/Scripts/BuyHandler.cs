@@ -48,7 +48,7 @@ public class BuyHandler : MonoBehaviour {
 		if (goodsUrl != "" && goodsUrl != oldGoodsUrl) {
 			oldGoodsUrl = goodsUrl;
 			buyBtn.GetComponent<RectTransform>().sizeDelta = new Vector2 (80f, 80f);
-		} else {
+		} else if (goodsUrl == "") {
 			buyBtn.GetComponent<RectTransform>().sizeDelta = new Vector2 (0f, 0f);
 		}
 	}
