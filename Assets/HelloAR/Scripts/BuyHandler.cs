@@ -12,6 +12,7 @@ public class BuyHandler : MonoBehaviour {
 	private GameObject buyBtn;
 
 	private string goodsUrl = "";
+	private string oldGoodsUrl = "";
 
 	WebViewObject webViewObject;
 
@@ -44,10 +45,11 @@ public class BuyHandler : MonoBehaviour {
 	void Update () {
 //		goodsUrl = "https://www.bing.com";
 		goodsUrl = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.productLink;
-		if (goodsUrl != "") {
-			buyBtn.SetActive (true);
+		if (goodsUrl != "" && goodsUrl != oldGoodsUrl) {
+			oldGoodsUrl = goodsUrl;
+			buyBtn.GetComponent<RectTransform>().sizeDelta = new Vector2 (80f, 80f);
 		} else {
-			buyBtn.SetActive (false);
+			buyBtn.GetComponent<RectTransform>().sizeDelta = new Vector2 (0f, 0f);
 		}
 	}
 
