@@ -14,7 +14,7 @@ public class TouchEventHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		AutoRotator ();
+//		AutoRotator ();
 		TouchEventMethod ();
 	}
 

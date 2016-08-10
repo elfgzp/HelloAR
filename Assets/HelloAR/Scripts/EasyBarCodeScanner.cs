@@ -21,7 +21,7 @@ namespace EasyAR
 
         protected override void Start()
         {
-			scanLine = GameObject.Find("ScanLine");
+			scanLine = GameObject.FindGameObjectWithTag ("ScanLine");
             imageTarget = GameObject.Find("ImageTarget");
             EnableOnStart = true;
 			// 二维码被扫描到，事件BarCodeUpdate将会被触发

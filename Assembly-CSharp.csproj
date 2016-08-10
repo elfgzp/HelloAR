@@ -64,10 +64,12 @@
      <Compile Include="Assets\HelloAR\Scripts\DataCommunicate.cs" />
      <Compile Include="Assets\HelloAR\Scripts\EasyBarCodeScanner.cs" />
      <Compile Include="Assets\HelloAR\Scripts\EasyImageTargetBehaviour.cs" />
+     <Compile Include="Assets\HelloAR\Scripts\GyroController.cs" />
      <Compile Include="Assets\HelloAR\Scripts\LoadController.cs" />
      <Compile Include="Assets\HelloAR\Scripts\LoadPrefab.cs" />
      <Compile Include="Assets\HelloAR\Scripts\OnButtonTouched.cs" />
      <Compile Include="Assets\HelloAR\Scripts\TouchEventHandler.cs" />
+     <Compile Include="Assets\HelloAR\Scripts\TuoKaHandler.cs" />
      <None Include="Assets\Plugins\JsonFx\JsonFx.Json\Readme.txt" />
      <None Include="Assets\Plugins\JsonFx\JsonFx.Json\License.txt" />
      <None Include="Assets\Plugins\JsonFx\TODO.txt" />

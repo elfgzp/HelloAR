@@ -48,7 +48,7 @@ namespace EasyAR
 			Screen.autorotateToLandscapeLeft = true;
 			Screen.autorotateToLandscapeRight = true;
 
-			scanLine = GameObject.Find("ScanLine");
+			scanLine = GameObject.FindGameObjectWithTag ("ScanLine");
 		}
 
         void ITargetEventHandler.OnTargetFound(Target target)
