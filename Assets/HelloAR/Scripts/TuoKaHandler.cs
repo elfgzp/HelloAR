@@ -7,11 +7,13 @@ using EasyAR;
 public class TuoKaHandler : MonoBehaviour {
 
 	private GameObject cameraDevice;
+	private GameObject renderCamera;
+	private GameObject augmenter;
 	private GameObject switchBtn;
-	private GameObject imgTarget;
+	public GameObject imgTarget;
 	private GameObject scanLine;
 
-	private bool isOn = false;
+	public bool isOn = false;
 
 	private string scanId = "";
 	private string oldScanId = "";
@@ -19,6 +21,8 @@ public class TuoKaHandler : MonoBehaviour {
 	void Awake () 
 	{
 		cameraDevice = GameObject.Find("CameraDevice");
+		renderCamera = GameObject.Find("RenderCamera");
+		augmenter = GameObject.Find ("Augmenter");
 	}
 
 	// Use this for initialization
@@ -28,6 +32,8 @@ public class TuoKaHandler : MonoBehaviour {
 		switchBtn = GameObject.FindGameObjectWithTag ("TuoKa");
 
 		switchBtn.GetComponent<RectTransform>().localPosition = new Vector3 (Screen.width / 2f - 40f, -120f, 0f);
+
+//		AttachGyro();
 	}
 	
 	// Update is called once per frame
@@ -55,16 +61,19 @@ public class TuoKaHandler : MonoBehaviour {
 
 	void TuoKa() {
 		// target set active；hide scan line
-//		imgTarget = GameObject.FindGameObjectWithTag ("ImgTarget");
+		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Augmenter;
+		imgTarget = GameObject.FindGameObjectWithTag ("ImgTarget");
 		imgTarget.SetActive (true);
 		scanLine.SetActive (false);
-
+		renderCamera.GetComponent<GyroHandler> ().AttachGyro ();
 	}
 
 	void TuoKaBack() {
 		// target set deactive；
-//		imgTarget = GameObject.FindGameObjectWithTag ("ImgTarget");
+		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Target;
 		imgTarget.SetActive (false);
 		scanLine.SetActive (true);
+		renderCamera.GetComponent<GyroHandler> ().DetachGyro ();
+		renderCamera.GetComponent<Transform> ().rotation = new Quaternion (0, 0, 0, 0);
 	}
 }

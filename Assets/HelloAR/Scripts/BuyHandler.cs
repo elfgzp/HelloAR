@@ -13,6 +13,8 @@ public class BuyHandler : MonoBehaviour {
 
 	private string goodsUrl = "";
 	private string oldGoodsUrl = "";
+	private string productClickedApi = "";
+	private string scanId = "";
 
 	WebViewObject webViewObject;
 
@@ -55,6 +57,9 @@ public class BuyHandler : MonoBehaviour {
 
 	public void Buy (GameObject button)
 	{
+		productClickedApi = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.productLinkClickedApi;
+		scanId = cameraDevice.GetComponent<EasyBarCodeScanner> ().info.scanId;
+		StartCoroutine (ProductCliked ());
 		Debug.Log ("GameObject " + button.name);
 		webViewObject = (new GameObject ("WebViewObject")).AddComponent<WebViewObject> ();
 		webViewObject.tag = "WebViewObject";
@@ -77,5 +82,10 @@ public class BuyHandler : MonoBehaviour {
 		webViewMask = GameObject.FindGameObjectWithTag ("WebView");
 		Destroy (webViewObject);
 		webViewMask.SetActive (false);
+	}
+
+	IEnumerator ProductCliked(){
+		WWW www = new WWW (productClickedApi + "&&scan_id=" + scanId);
+		yield return www;
 	}
 }

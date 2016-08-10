@@ -1,14 +1,11 @@
-﻿// ***********************************************************
-// Written by Heyworks Unity Studio http://unity.heyworks.com/
-// ***********************************************************
-using UnityEngine;
-/// <summary>
-/// Gyroscope controller that works with any device orientation.
-/// </summary>
-public class GyroController : MonoBehaviour
-{
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
+public class GyroHandler : MonoBehaviour {
 	#region [Private fields]
-	private bool gyroEnabled = false;
+	public bool gyroEnabled = false;
 	private const float lowPassFilterFactor = 0.2f;
 	private readonly Quaternion baseIdentity = Quaternion.Euler(90, 0, 0);
 	private readonly Quaternion landscapeRight = Quaternion.Euler(0, 0, 90);
@@ -22,64 +19,26 @@ public class GyroController : MonoBehaviour
 	private bool debug = true;
 	#endregion
 	#region [Unity events]
-	protected void Start()
-	{
-//		AttachGyro();
+
+	// Use this for initialization
+	void Start () {
+	
 	}
-	protected void Update()
-	{
+	
+	// Update is called once per frame
+	void Update () {
 		if (!gyroEnabled)
 			return;
 		transform.rotation = Quaternion.Slerp(transform.rotation,
 			cameraBase * (ConvertRotation(referanceRotation * Input.gyro.attitude) * GetRotFix()), lowPassFilterFactor);
 	}
-	protected void OnGUI()
-	{
-		if (!debug)
-			return;
-//		GUILayout.Label("Orientation: " + Screen.orientation);
-//		GUILayout.Label("Calibration: " + calibration);
-//		GUILayout.Label("Camera base: " + cameraBase);
-//		GUILayout.Label("input.gyro.attitude: " + Input.gyro.attitude);
-//		GUILayout.Label("transform.rotation: " + transform.rotation);
-//		if (GUILayout.Button("On/off gyro: " + Input.gyro.enabled, GUILayout.Height(100)))
-//		{
-//			Input.gyro.enabled = !Input.gyro.enabled;
-//		}
-//		if (GUILayout.Button("On/off gyro controller: " + gyroEnabled, GUILayout.Height(100)))
-//		{
-//			if (gyroEnabled)
-//			{
-//				DetachGyro();
-//			}
-//			else
-//			{
-//				AttachGyro();
-//			}
-//		}
-//		if (GUILayout.Button("Update gyro calibration (Horizontal only)", GUILayout.Height(80)))
-//		{
-//			UpdateCalibration(true);
-//		}
-//		if (GUILayout.Button("Update camera base rotation (Horizontal only)", GUILayout.Height(80)))
-//		{
-//			UpdateCameraBaseRotation(true);
-//		}
-//		if (GUILayout.Button("Reset base orientation", GUILayout.Height(80)))
-//		{
-//			ResetBaseOrientation();
-//		}
-//		if (GUILayout.Button("Reset camera rotation", GUILayout.Height(80)))
-//		{
-//			transform.rotation = new Quaternion (0, 0, 0, 0);
-//		}
-	}
+
 	#endregion
 	#region [Public methods]
 	/// <summary>
 	/// Attaches gyro controller to the transform.
 	/// </summary>
-	private void AttachGyro()
+	public void AttachGyro()
 	{
 		gyroEnabled = true;
 		ResetBaseOrientation();
@@ -90,7 +49,7 @@ public class GyroController : MonoBehaviour
 	/// <summary>
 	/// Detaches gyro controller from the transform
 	/// </summary>
-	private void DetachGyro()
+	public void DetachGyro()
 	{
 		gyroEnabled = false;
 	}
