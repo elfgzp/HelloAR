@@ -62,8 +62,13 @@ public class TuoKaHandler : MonoBehaviour {
 	void TuoKa() {
 		// target set active；hide scan line
 		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Augmenter;
-		imgTarget = GameObject.FindGameObjectWithTag ("ImgTarget");
+		GameObject imageTargetRoot = GameObject.FindGameObjectWithTag("ImageTargetRoot");
+		imgTarget = imageTargetRoot.transform.Find ("ImageTarget").gameObject;
 		imgTarget.SetActive (true);
+		GameObject perfab = GameObject.FindGameObjectWithTag ("OldPrefab");
+		Vector3 newPosition = GameObject.FindGameObjectWithTag ("MainCamera").transform.localPosition + new Vector3 (0, -100, 0);
+		perfab.transform.localPosition = newPosition;
+		perfab.transform.localScale = new Vector3 (perfab.transform.localScale.x * 100, perfab.transform.localScale.y * 100, perfab.transform.localScale.x * 100);
 		scanLine.SetActive (false);
 		renderCamera.GetComponent<GyroHandler> ().AttachGyro ();
 	}
@@ -71,6 +76,8 @@ public class TuoKaHandler : MonoBehaviour {
 	void TuoKaBack() {
 		// target set deactive；
 		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Target;
+		GameObject perfab = GameObject.FindGameObjectWithTag ("OldPrefab");
+		perfab.transform.localScale = new Vector3 (perfab.transform.localScale.x / 100, perfab.transform.localScale.y / 100, perfab.transform.localScale.x / 100);
 		imgTarget.SetActive (false);
 		scanLine.SetActive (true);
 		renderCamera.GetComponent<GyroHandler> ().DetachGyro ();
