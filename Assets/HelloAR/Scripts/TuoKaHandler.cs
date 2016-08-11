@@ -13,6 +13,7 @@ public class TuoKaHandler : MonoBehaviour {
 	public GameObject imgTarget;
 	private GameObject scanLine;
 	private Vector3 prefabOriginPosition;
+	private Quaternion prefabOriginRotation;
 	private Vector3 prefabOriginScale;
 
 	public bool isOn = false;
@@ -63,12 +64,13 @@ public class TuoKaHandler : MonoBehaviour {
 
 	void TuoKa() {
 		// target set active；hide scan line
-		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Augmenter;
+//		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Augmenter;
 		GameObject imageTargetRoot = GameObject.FindGameObjectWithTag("ImageTargetRoot");
 		imgTarget = imageTargetRoot.transform.Find ("ImageTarget").gameObject;
 		imgTarget.SetActive (true);
 		GameObject prefab = GameObject.FindGameObjectWithTag ("OldPrefab");
 		prefabOriginPosition = prefab.transform.localPosition;
+		prefabOriginRotation = prefab.transform.localRotation;
 		prefabOriginScale = prefab.transform.localScale;
 		Vector3 newPosition = GameObject.FindGameObjectWithTag ("MainCamera").transform.localPosition + new Vector3 (0, -100, 0);
 		prefab.transform.localPosition = newPosition;
@@ -81,9 +83,10 @@ public class TuoKaHandler : MonoBehaviour {
 
 	void TuoKaBack() {
 		// target set deactive；
-		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Target;
+//		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Target;
 		GameObject prefab = GameObject.FindGameObjectWithTag ("OldPrefab");
 		prefab.transform.localPosition = prefabOriginPosition;
+		prefab.transform.localRotation = prefabOriginRotation;
 		prefab.transform.localScale = prefabOriginScale;
 		Destroy (prefab.GetComponent<TouchEventHandler> ());
 		imgTarget.SetActive (false);

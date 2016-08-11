@@ -144,7 +144,13 @@ public class OnButtonTouched : MonoBehaviour {
 //		float z = Camera.main.transform.position.z;
 //		z += 0.25f;
 //		Camera.main.transform.Translate (0, 0, z);
-		GameObject.FindGameObjectWithTag("ImgTarget").transform.GetChild(0).localScale += new Vector3 (0.25f, 0.25f, 0.25f);
+		GameObject imageTarget = GameObject.FindGameObjectWithTag ("ImgTarget");
+		if (imageTarget != null) {
+			if (imageTarget.transform.childCount != 0) {
+				imageTarget.transform.GetChild (0).localScale += new Vector3 (0.25f, 0.25f, 0.25f);
+			}
+		}
+
 	}
 
 	public void ScaleMinus()
@@ -152,7 +158,12 @@ public class OnButtonTouched : MonoBehaviour {
 //		float z = Camera.main.transform.position.z;
 //		z -= 0.25f;
 //		Camera.main.transform.Translate (0, 0, z);
-		GameObject.FindGameObjectWithTag("ImgTarget").transform.GetChild(0).localScale += new Vector3 (-0.25f, -0.25f, -0.25f);
+		GameObject imageTarget = GameObject.FindGameObjectWithTag ("ImgTarget");
+		if (imageTarget != null) {
+			if (imageTarget.transform.childCount != 0) {
+				imageTarget.transform.GetChild (0).localScale -= new Vector3 (0.25f, 0.25f, 0.25f);
+			}
+		}
 	}
 
 	//异步加载
