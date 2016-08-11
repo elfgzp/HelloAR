@@ -41,7 +41,7 @@ public class TouchEventHandler : MonoBehaviour {
 		if (Input.touchCount == 1) {
 			if (Input.touches [0].phase == TouchPhase.Began) {
 			} else if (Input.touches [0].phase == TouchPhase.Moved) {
-				this.transform.Translate (new Vector3 (-Input.touches [0].deltaPosition.x * 0.01f, 0, -Input.touches [0].deltaPosition.y * 0.01f));
+				this.transform.Translate (new Vector3 (-Input.touches [0].deltaPosition.x * 0.001f, 0, -Input.touches [0].deltaPosition.y * 0.003f));
 			}
 //			if (Input.touches [0].phase == TouchPhase.Began) {
 //			} else if (Input.touches [0].phase == TouchPhase.Moved) {
