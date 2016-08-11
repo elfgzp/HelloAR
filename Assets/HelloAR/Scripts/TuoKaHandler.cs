@@ -73,6 +73,8 @@ public class TuoKaHandler : MonoBehaviour {
 		Vector3 newPosition = GameObject.FindGameObjectWithTag ("MainCamera").transform.localPosition + new Vector3 (0, -100, 0);
 		prefab.transform.localPosition = newPosition;
 		prefab.transform.localScale = new Vector3 (prefab.transform.localScale.x * 100, prefab.transform.localScale.y * 100, prefab.transform.localScale.x * 100);
+		// 添加触摸事件的脚本
+		prefab.AddComponent<TouchEventHandler>();
 		scanLine.SetActive (false);
 		renderCamera.GetComponent<GyroHandler> ().AttachGyro ();
 	}
@@ -83,6 +85,7 @@ public class TuoKaHandler : MonoBehaviour {
 		GameObject prefab = GameObject.FindGameObjectWithTag ("OldPrefab");
 		prefab.transform.localPosition = prefabOriginPosition;
 		prefab.transform.localScale = prefabOriginScale;
+		Destroy (prefab.GetComponent<TouchEventHandler> ());
 		imgTarget.SetActive (false);
 		scanLine.SetActive (true);
 		renderCamera.GetComponent<GyroHandler> ().DetachGyro ();
