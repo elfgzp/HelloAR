@@ -12,6 +12,8 @@ public class TuoKaHandler : MonoBehaviour {
 	private GameObject switchBtn;
 	public GameObject imgTarget;
 	private GameObject scanLine;
+	private Vector3 prefabOriginPosition;
+	private Vector3 prefabOriginScale;
 
 	public bool isOn = false;
 
@@ -65,10 +67,12 @@ public class TuoKaHandler : MonoBehaviour {
 		GameObject imageTargetRoot = GameObject.FindGameObjectWithTag("ImageTargetRoot");
 		imgTarget = imageTargetRoot.transform.Find ("ImageTarget").gameObject;
 		imgTarget.SetActive (true);
-		GameObject perfab = GameObject.FindGameObjectWithTag ("OldPrefab");
+		GameObject prefab = GameObject.FindGameObjectWithTag ("OldPrefab");
+		prefabOriginPosition = prefab.transform.localPosition;
+		prefabOriginScale = prefab.transform.localScale;
 		Vector3 newPosition = GameObject.FindGameObjectWithTag ("MainCamera").transform.localPosition + new Vector3 (0, -100, 0);
-		perfab.transform.localPosition = newPosition;
-		perfab.transform.localScale = new Vector3 (perfab.transform.localScale.x * 100, perfab.transform.localScale.y * 100, perfab.transform.localScale.x * 100);
+		prefab.transform.localPosition = newPosition;
+		prefab.transform.localScale = new Vector3 (prefab.transform.localScale.x * 100, prefab.transform.localScale.y * 100, prefab.transform.localScale.x * 100);
 		scanLine.SetActive (false);
 		renderCamera.GetComponent<GyroHandler> ().AttachGyro ();
 	}
@@ -76,8 +80,9 @@ public class TuoKaHandler : MonoBehaviour {
 	void TuoKaBack() {
 		// target set deactive；
 		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Target;
-		GameObject perfab = GameObject.FindGameObjectWithTag ("OldPrefab");
-		perfab.transform.localScale = new Vector3 (perfab.transform.localScale.x / 100, perfab.transform.localScale.y / 100, perfab.transform.localScale.x / 100);
+		GameObject prefab = GameObject.FindGameObjectWithTag ("OldPrefab");
+		prefab.transform.localPosition = prefabOriginPosition;
+		prefab.transform.localScale = prefabOriginScale;
 		imgTarget.SetActive (false);
 		scanLine.SetActive (true);
 		renderCamera.GetComponent<GyroHandler> ().DetachGyro ();
