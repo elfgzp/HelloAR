@@ -1,8 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HelloAR/Scripts/GyroController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HelloAR/Scripts/TuoKaHandler.cs">
     <Files>
+      <File FileName="Assets/HelloAR/Scripts/TouchEventHandler.cs" Line="17" Column="20" />
+      <File FileName="Assets/HelloAR/Scripts/OnButtonTouched.cs" Line="37" Column="75" />
+      <File FileName="Assets/HelloAR/Scripts/TuoKaHandler.cs" Line="51" Column="2" />
+      <File FileName="Assets/HelloAR/Scripts/GyroHandler.cs" Line="27" Column="2" />
       <File FileName="Assets/HelloAR/Scripts/GyroController.cs" Line="1" Column="1" />
+      <File FileName="Assets/HelloAR/Scripts/EasyBarCodeScanner.cs" Line="52" Column="3" />
+      <File FileName="Assets/HelloAR/Scripts/ARIsEasyBehaviour.cs" Line="71" Column="105" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

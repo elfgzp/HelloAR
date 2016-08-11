@@ -65,6 +65,7 @@
      <Compile Include="Assets\HelloAR\Scripts\EasyBarCodeScanner.cs" />
      <Compile Include="Assets\HelloAR\Scripts\EasyImageTargetBehaviour.cs" />
      <Compile Include="Assets\HelloAR\Scripts\GyroController.cs" />
+     <Compile Include="Assets\HelloAR\Scripts\GyroHandler.cs" />
      <Compile Include="Assets\HelloAR\Scripts\LoadController.cs" />
      <Compile Include="Assets\HelloAR\Scripts\LoadPrefab.cs" />
      <Compile Include="Assets\HelloAR\Scripts\OnButtonTouched.cs" />
