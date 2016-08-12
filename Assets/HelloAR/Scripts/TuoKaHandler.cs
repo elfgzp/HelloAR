@@ -17,6 +17,8 @@ public class TuoKaHandler : MonoBehaviour {
 	private Vector3 prefabOriginScale;
 
 	public bool isOn = false;
+	public float scaleRate = 0.25f;
+//	public Vector2 moveRate = new Vector2(0.001f, 0.003f);
 
 	private string scanId = "";
 	private string oldScanId = "";
@@ -63,6 +65,8 @@ public class TuoKaHandler : MonoBehaviour {
 	}
 
 	void TuoKa() {
+		scaleRate = 10f;
+//		moveRate = new Vector2(0.001f, 0.003f);
 		// target set active；hide scan line
 //		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Augmenter;
 		GameObject imageTargetRoot = GameObject.FindGameObjectWithTag("ImageTargetRoot");
@@ -76,19 +80,21 @@ public class TuoKaHandler : MonoBehaviour {
 		prefab.transform.localPosition = newPosition;
 		prefab.transform.localScale = new Vector3 (prefab.transform.localScale.x * 100, prefab.transform.localScale.y * 100, prefab.transform.localScale.x * 100);
 		// 添加触摸事件的脚本
-		prefab.AddComponent<TouchEventHandler>();
+//		prefab.AddComponent<TouchEventHandler>();
 		scanLine.SetActive (false);
 		renderCamera.GetComponent<GyroHandler> ().AttachGyro ();
 	}
 
 	void TuoKaBack() {
+		scaleRate = 0.2f;
+//		moveRate = new Vector2 (0.1f, 0.3f);
 		// target set deactive；
 //		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Target;
 		GameObject prefab = GameObject.FindGameObjectWithTag ("OldPrefab");
 		prefab.transform.localPosition = prefabOriginPosition;
 		prefab.transform.localRotation = prefabOriginRotation;
 		prefab.transform.localScale = prefabOriginScale;
-		Destroy (prefab.GetComponent<TouchEventHandler> ());
+//		Destroy (prefab.GetComponent<TouchEventHandler> ());
 		imgTarget.SetActive (false);
 		scanLine.SetActive (true);
 		renderCamera.GetComponent<GyroHandler> ().DetachGyro ();

@@ -17,6 +17,7 @@ public class OnButtonTouched : MonoBehaviour {
 //	private GameObject commButton;
 	private AsyncOperation async = null;
 	private float commX = Screen.width + 50f;
+	private GameObject tuoKaBtn;
 
 	public bool isShow = false;
 	public bool isLiked = false;
@@ -43,6 +44,7 @@ public class OnButtonTouched : MonoBehaviour {
 		shotField = GameObject.FindGameObjectWithTag ("ShotField");
 		textField = GameObject.FindGameObjectWithTag ("TextField");
 		shotButton = GameObject.FindGameObjectWithTag ("ShotButton");
+		tuoKaBtn = GameObject.FindGameObjectWithTag ("TuoKa");
 
 //		commButton = GameObject.FindGameObjectWithTag ("CommButton");
 		// 设置评论视图
@@ -147,7 +149,8 @@ public class OnButtonTouched : MonoBehaviour {
 		GameObject imageTarget = GameObject.FindGameObjectWithTag ("ImgTarget");
 		if (imageTarget != null) {
 			if (imageTarget.transform.childCount != 0) {
-				imageTarget.transform.GetChild (0).localScale += new Vector3 (0.25f, 0.25f, 0.25f);
+				float scaleRate = tuoKaBtn.GetComponent<TuoKaHandler> ().scaleRate;
+				imageTarget.transform.GetChild (0).localScale += new Vector3 (scaleRate, scaleRate, scaleRate);
 			}
 		}
 
@@ -161,7 +164,8 @@ public class OnButtonTouched : MonoBehaviour {
 		GameObject imageTarget = GameObject.FindGameObjectWithTag ("ImgTarget");
 		if (imageTarget != null) {
 			if (imageTarget.transform.childCount != 0) {
-				imageTarget.transform.GetChild (0).localScale -= new Vector3 (0.25f, 0.25f, 0.25f);
+				float scaleRate = tuoKaBtn.GetComponent<TuoKaHandler> ().scaleRate;
+				imageTarget.transform.GetChild (0).localScale -= new Vector3 (scaleRate, scaleRate, scaleRate);
 			}
 		}
 	}

@@ -59,7 +59,9 @@ public class LoadPrefab : MonoBehaviour
         ShowObjects(transform);
     	// 实例化模型对象
         GameObject gameObject = (GameObject)Instantiate(bundle.mainAsset, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
-        // 添加tag
+        // 添加触摸事件脚本
+		gameObject.AddComponent<TouchEventHandler>();
+		// 添加tag
         gameObject.tag = prefabTag;
         // 记录transform
         Vector3 originScale = gameObject.transform.localScale;
