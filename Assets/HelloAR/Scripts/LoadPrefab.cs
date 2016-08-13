@@ -61,6 +61,8 @@ public class LoadPrefab : MonoBehaviour
         GameObject gameObject = (GameObject)Instantiate(bundle.mainAsset, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
         // 添加触摸事件脚本
 		gameObject.AddComponent<TouchEventHandler>();
+//		gameObject.AddComponent<MoveHandler> ();
+//		gameObject.AddComponent<MeshCollider> ();
 		// 添加tag
         gameObject.tag = prefabTag;
         // 记录transform

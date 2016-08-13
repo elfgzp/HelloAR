@@ -65,7 +65,7 @@ public class TuoKaHandler : MonoBehaviour {
 	}
 
 	void TuoKa() {
-		scaleRate = 10f;
+		scaleRate = 5f;
 //		moveRate = new Vector2(0.001f, 0.003f);
 		// target set active；hide scan line
 //		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Augmenter;
@@ -98,6 +98,7 @@ public class TuoKaHandler : MonoBehaviour {
 		imgTarget.SetActive (false);
 		scanLine.SetActive (true);
 		renderCamera.GetComponent<GyroHandler> ().DetachGyro ();
-		renderCamera.GetComponent<Transform> ().rotation = new Quaternion (0, 0, 0, 0);
+		renderCamera.transform.rotation = new Quaternion (0, 0, 0, 0);
+		renderCamera.transform.localPosition = new Vector3 (0, 0, 0);
 	}
 }

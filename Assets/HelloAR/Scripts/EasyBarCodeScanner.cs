@@ -68,10 +68,13 @@ namespace EasyAR
             yield return www;
 
             json = www.text;
-			info = JsonReader.Deserialize<BarCodeInfo>(json);
-
-			Debug.Log(info.targetImageUrl);
-			Debug.Log(info.prefabUrl);
+			if (json != "" && json != "error") {
+				info = JsonReader.Deserialize<BarCodeInfo> (json);
+				Debug.Log (info.targetImageUrl);
+				Debug.Log (info.prefabUrl);
+			} else {
+				lastBarCode = "";
+			}
         }
 
         void DeleteOldPrefab()
