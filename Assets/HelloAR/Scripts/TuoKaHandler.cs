@@ -65,7 +65,7 @@ public class TuoKaHandler : MonoBehaviour {
 	}
 
 	void TuoKa() {
-		scaleRate = 5f;
+		scaleRate = 1f;
 //		moveRate = new Vector2(0.001f, 0.003f);
 		// target set active；hide scan line
 //		augmenter.GetComponent<AugmenterBehaviour> ().WorldCenter = AugmenterBaseBehaviour.CenterMode.Augmenter;
