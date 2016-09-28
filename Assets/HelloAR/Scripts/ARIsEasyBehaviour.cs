@@ -24,6 +24,8 @@ namespace EasyAR
             + "  4. replace all text in TextArea with your key";
 
 		private GameObject scanLine;
+		private GameObject scaleView;
+
 		public GameObject tuoKa;
 
         private void Awake()
@@ -50,12 +52,15 @@ namespace EasyAR
 			Screen.autorotateToLandscapeRight = true;
 
 			scanLine = GameObject.FindGameObjectWithTag ("ScanLine");
+			scaleView = GameObject.FindGameObjectWithTag ("ScaleView");
+//			scaleView.SetActive (false);
 		}
 
         void ITargetEventHandler.OnTargetFound(Target target)
         {
             Debug.Log("<Global Handler> Found: " + target.Id);
 			scanLine.SetActive (false);
+			scaleView.SetActive (true);
 //			if (GameObject.FindGameObjectWithTag ("TuoKa").GetComponent<TuoKaHandler> ().isOn) {
 //				GameObject.FindGameObjectWithTag ("TuoKa").GetComponent<TuoKaHandler> ().isOn = false;
 //				GameObject.FindGameObjectWithTag ("TuoKa").GetComponent<TuoKaHandler> ().TuoKaBtnClicked ();
@@ -68,9 +73,11 @@ namespace EasyAR
 
 			if (GameObject.FindGameObjectWithTag ("TuoKa").GetComponent<TuoKaHandler> ().isOn) {
 				scanLine.SetActive (false);
+//				scaleView.SetActive (true);
 				GameObject.FindGameObjectWithTag ("TuoKa").GetComponent<TuoKaHandler> ().imgTarget.SetActive (true);
 			} else {
 				scanLine.SetActive (true);
+				scaleView.SetActive (false);
 			}
         }
 

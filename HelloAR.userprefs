@@ -1,12 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HelloAR/ScanLineShader.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HelloAR/Scripts/TuoKaHandler.cs">
     <Files>
-      <File FileName="Assets/HelloAR/ScanLineShader.shader" Line="13" Column="43" />
+      <File FileName="Assets/HelloAR/Scripts/LoadPrefab.cs" Line="1" Column="1" />
       <File FileName="Assets/HelloAR/Scripts/TouchEventHandler.cs" Line="1" Column="1" />
       <File FileName="Assets/HelloAR/Scripts/MoveHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets/HelloAR/Scripts/TuoKaHandler.cs" Line="68" Column="16" />
+      <File FileName="Assets/HelloAR/Scripts/TuoKaHandler.cs" Line="85" Column="30" />
       <File FileName="Assets/HelloAR/Scripts/OnButtonTouched.cs" Line="1" Column="1" />
+      <File FileName="Assets/HelloAR/Scripts/ARIsEasyBehaviour.cs" Line="80" Column="33" />
+      <File FileName="Assets/HelloAR/Scripts/LoadController.cs" Line="4" Column="46" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

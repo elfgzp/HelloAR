@@ -65,6 +65,7 @@ public class TuoKaHandler : MonoBehaviour {
 	}
 
 	void TuoKa() {
+		GameObject.FindGameObjectWithTag("Scanner").transform.Find("ScaleView").gameObject.SetActive (true);
 		scaleRate = 1f;
 //		moveRate = new Vector2(0.001f, 0.003f);
 		// target set active；hide scan line
@@ -86,6 +87,7 @@ public class TuoKaHandler : MonoBehaviour {
 	}
 
 	void TuoKaBack() {
+		GameObject.FindGameObjectWithTag("ScaleView").SetActive (false);
 		scaleRate = 0.2f;
 //		moveRate = new Vector2 (0.1f, 0.3f);
 		// target set deactive；
