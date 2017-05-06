@@ -12,7 +12,8 @@ namespace EasyAR
         private string lastBarCode = "";
 		private string json;
 		private GameObject scanLine;
-		private float y = Screen.height / 2 + 5;
+		private float y = 0f;
+		private float scanViewHeight = 0f;
 		// 二维码解析后的内容
 		public BarCodeInfo info = new BarCodeInfo();
         static string prefabTag = "OldPrefab";
@@ -30,6 +31,8 @@ namespace EasyAR
 
 			StartCoroutine (ScanLineAnimation());
 			Debug.Log ("Start!");
+			scanViewHeight = GameObject.FindGameObjectWithTag ("Scanner").GetComponent<RectTransform>().rect.height;
+			y = scanViewHeight + 5;
         }
 
         private void OnBarCodeUpdate(BarCodeScannerBaseBehaviour scanner, string barcode)
@@ -44,19 +47,16 @@ namespace EasyAR
         }
 
 		void OnGUI() {
-			// 设置扫描线的宽度
-			Vector2 newSize = new Vector2(Screen.width, 10f);
-			scanLine.GetComponent<RectTransform> ().sizeDelta = newSize;
 		}
 
 		IEnumerator ScanLineAnimation()
 		{
 			while (isScanning) {
 				yield return null;
-				scanLine.GetComponent<RectTransform> ().localPosition = new Vector3(0, y - 10f, 0);
-				y -= 10f;
-				if (Mathf.Abs (y) > Screen.height / 2 + 10) {
-					y = Screen.height / 2 + 5;
+				scanLine.GetComponent<RectTransform> ().localPosition = new Vector3(0, y - 5f, 0);
+				y -= 5f;
+				if (y < - 5) {
+					y = scanViewHeight + 5;
 				}
 			}
 		}

@@ -16,7 +16,7 @@ public class OnButtonTouched : MonoBehaviour {
 	private GameObject quitBtn;
 //	private GameObject commButton;
 	private AsyncOperation async = null;
-	private float commX = Screen.width + 50f;
+	private float commX = Screen.width * 2f;
 	private GameObject tuoKaBtn;
 
 	public bool isShow = false;
@@ -49,15 +49,15 @@ public class OnButtonTouched : MonoBehaviour {
 //		commButton = GameObject.FindGameObjectWithTag ("CommButton");
 		// 设置评论视图
 		if (commView != null) {
-			commView.GetComponent<RectTransform> ().localPosition = new Vector3 (Screen.width + 10f, 0f, 0f);
-			Debug.Log ("I find it!");
-			shotField.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width, 72f);
-
-			textField.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width / 3 * 2, 64f);
-			textField.GetComponent<RectTransform> ().localPosition = new Vector3 (- Screen.width / 6 + 8, 40f, 0f);
-
-			shotButton.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width / 3 - 64, 64f);
-			shotButton.GetComponent<RectTransform> ().localPosition = new Vector3 (Screen.width / 3 - 20, 40f, 0f);
+			commView.GetComponent<RectTransform> ().localPosition = new Vector3 (Screen.width * 2f, 0f, 0f);
+//			Debug.Log ("I find it!");
+//			shotField.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width, 72f);
+//
+//			textField.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width / 3 * 2, 64f);
+//			textField.GetComponent<RectTransform> ().localPosition = new Vector3 (- Screen.width / 6 + 8, 40f, 0f);
+//
+//			shotButton.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width / 3 - 64, 64f);
+//			shotButton.GetComponent<RectTransform> ().localPosition = new Vector3 (Screen.width / 3 - 20, 40f, 0f);
 //			shotButton.GetComponent<RectTransform> ().localPosition = new Vector3 (Screen.width / 6 * 5, 8f, 0f);
 //			commView.SetActive (false);
 		}
@@ -67,8 +67,8 @@ public class OnButtonTouched : MonoBehaviour {
 	{
 		// 设置评论视图
 		if (commView != null) {
-			Vector2 newSize = new Vector2(Screen.width + 10f, Screen.height + 10f);
-			commView.GetComponent<RectTransform> ().sizeDelta = newSize;
+//			Vector2 newSize = new Vector2(Screen.width + 10f, Screen.height + 10f);
+//			commView.GetComponent<RectTransform> ().sizeDelta = newSize;
 		}
 	}
 
@@ -207,7 +207,7 @@ public class OnButtonTouched : MonoBehaviour {
 			commX += 60f;
 			commView.GetComponent<RectTransform> ().localPosition = new Vector3(commX, 0f, 0f);
 		}
-		commX = Screen.width + 50f;
+		commX = Screen.width * 2f;
 		commView.GetComponent<RectTransform> ().localPosition = new Vector3(commX, 0f, 0f);
 
 		GameObject[] danmus = GameObject.FindGameObjectsWithTag ("DanPfb");

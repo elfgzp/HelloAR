@@ -36,7 +36,7 @@ public class TuoKaHandler : MonoBehaviour {
 
 		switchBtn = GameObject.FindGameObjectWithTag ("TuoKa");
 
-		switchBtn.GetComponent<RectTransform>().localPosition = new Vector3 (Screen.width / 2f - 40f, -120f, 0f);
+//		switchBtn.GetComponent<RectTransform>().localPosition = new Vector3 (Screen.width / 2f - 40f, -120f, 0f);
 
 //		AttachGyro();
 	}

@@ -32,10 +32,10 @@ public class BuyHandler : MonoBehaviour {
 
 //		buyBtn.SetActive (false);
 
-		buyBtn.GetComponent<RectTransform>().localPosition = new Vector3 (Screen.width / 2f - 40f, 0f, 0f);
+//		buyBtn.GetComponent<RectTransform>().localPosition = new Vector3 (Screen.width / 2f - 40f, 0f, 0f);
 //		Debug.Log("*****localPosition: " + buyBtn.GetComponent<RectTransform>().localPosition + "*****\n");
-		goBackBtn.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width, 32f);
-		goBackBtn.GetComponent<RectTransform>().localPosition = new Vector3 (0f, Screen.height / 2f, 0f);
+//		goBackBtn.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width, 32f);
+//		goBackBtn.GetComponent<RectTransform>().localPosition = new Vector3 (0f, Screen.height / 2f, 0f);
 //		Debug.Log("-*-BackBtn localPosition: " + goBackBtn.GetComponent<RectTransform>().localPosition + "-*-\n");
 
 		if (webViewMask != null) {

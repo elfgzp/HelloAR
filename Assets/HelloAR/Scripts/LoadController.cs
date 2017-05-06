@@ -30,8 +30,8 @@ public class LoadController : MonoBehaviour {
 	{
 		GameObject scaleView = GameObject.FindGameObjectWithTag ("ScaleView");
 //		scaleView.transform.localScale = Vector3.zero;
-		scaleView.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width / 2, 64f);
-		scaleView.transform.localPosition = new Vector3 (0f, -Screen.height / 2 + 32, 0f);
+//		scaleView.GetComponent<RectTransform> ().sizeDelta = new Vector2 (Screen.width / 2, 64f);
+//		scaleView.transform.localPosition = new Vector3 (0f, -Screen.height / 2 + 32, 0f);
 		scaleView.SetActive (false);
 	}
 }
